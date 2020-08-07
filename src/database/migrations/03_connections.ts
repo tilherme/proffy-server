@@ -8,12 +8,12 @@ export async function up(knex: Knex) {
         table.integer('user_id')
             .notNullable()
             .references('id')
-            .inTable('user')
+            .inTable('users')
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
 
             table.timestamp('created_at')
-            .defaultTo('now()')
+            .defaultTo(knex.raw('CURRENT_TIMESTAMP'))
             .notNullable();
     })
 }
